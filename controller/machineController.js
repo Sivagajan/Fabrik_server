@@ -1,8 +1,17 @@
-export const addMachineController = (req, res) => {
+import { addMachineService, getAllFreeMachineService, getAllMachineService } from "../services/machineService.js"
 
-    const machine = req.body
+export const addMachineController = async (req, res) => {
+    
+    try{
+        const machine = req.body
+        console.log(machine)
+        const adding = await addMachineService(machine)
+        console.log(adding)
 
-
+        res.status(200).json(adding)
+    }catch(error){
+        res.status(500).json({error: error})
+    }
 }
 
 export const getAllMachineController = async (req, res) => {
